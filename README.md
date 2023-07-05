@@ -43,14 +43,15 @@ Or, if you don't have GraalVM installed, you can run the native executable build
 ./mvnw package -Pnative -Dquarkus.native.container-build=true
 ```
 
-You can then execute your native executable with: `./target/communication-1.0.0-SNAPSHOT-runner`
+You can then execute your native executable with: `./target/communication-1.0.0-runner`
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
 
-## Provided Code
+## Related Guides
 
-### RESTEasy Reactive
-
-Easily start your Reactive RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+- Camel AMQP ([guide](https://camel.apache.org/camel-quarkus/latest/reference/extensions/amqp.html)): Messaging with AMQP protocol using Apache QPid Client
+- Camel Core ([guide](https://camel.apache.org/camel-quarkus/latest/reference/extensions/core.html)): Camel core functionality and basic Camel languages: Constant, ExchangeProperty, Header, Ref, Simple and Tokenize
+- Camel Kotlin ([guide](https://camel.apache.org/camel-quarkus/latest/reference/extensions/kotlin.html)): Write Camel integration routes in Kotlin
+- Camel String Template ([guide](https://camel.apache.org/camel-quarkus/latest/reference/extensions/stringtemplate.html)): Transform messages using StringTemplate engine
+- Camel Kotlin DSL ([guide](https://camel.apache.org/camel-quarkus/latest/reference/extensions/kotlin-dsl.html)): Support for parsing Kotlin route definitions at runtime
+- Kotlin ([guide](https://quarkus.io/guides/kotlin)): Write your services in Kotlin
