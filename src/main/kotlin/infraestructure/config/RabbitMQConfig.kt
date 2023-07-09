@@ -9,15 +9,15 @@ import org.springframework.amqp.rabbit.connection.ConnectionFactory
 class RabbitMQConfig {
     @ApplicationScoped
     fun  connectionFactory(@ConfigProperty(name = "host_rabbit") host: String,
-                           @ConfigProperty(name = "user_rabbit") port: String,
-                           @ConfigProperty(name = "pass_rabbit") username: String,
-                           @ConfigProperty(name = "port_rabbit") pwd: String,
+                           @ConfigProperty(name = "user_rabbit") username: String,
+                           @ConfigProperty(name = "pass_rabbit") pwd: String,
+                           @ConfigProperty(name = "port_rabbit") port: Int,
     ): ConnectionFactory {
         val connectionFactory: CachingConnectionFactory = CachingConnectionFactory()
-        connectionFactory.host = "192.168.15.103"
-        connectionFactory.port = 5672
-        connectionFactory.username = "api"
-        connectionFactory.setPassword("api@user")
+        connectionFactory.host = host
+        connectionFactory.port = port
+        connectionFactory.username = username
+        connectionFactory.setPassword(pwd)
         return connectionFactory
     }
 }

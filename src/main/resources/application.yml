@@ -4,5 +4,5 @@ pass_rabbit: ${RABBIT_PASSWORD:api@user}
 port_rabbit: ${RABBIT_PORT:5672}
 events:
   origin:
-    user-auth-created: spring-rabbitmq:auth?queues=communication.user.auth.created&routingKey=event.user-auth.created&exchangeType=topic&prefetchCount=100&autoDeclare=true
+    user-auth-created: spring-rabbitmq:auth?queues=communication.email&routingKey=command.user-auth.send-email&exchangeType=topic&autoDeclare=true
 
