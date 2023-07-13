@@ -2,7 +2,28 @@ host_rabbit: ${RABBIT_HOST:192.168.15.103}
 user_rabbit: ${RABBIT_USER:api}
 pass_rabbit: ${RABBIT_PASSWORD:api@user}
 port_rabbit: ${RABBIT_PORT:5672}
+user_email: ${EMAIL_USERNAME:gomblesolutions@gmail.com}
+pass_email: ${EMAIL_PASSWORD:lqxmahblswywlgek}
+
 events:
   origin:
-    user-auth-created: spring-rabbitmq:auth?queues=communication.email&routingKey=command.user-auth.send-email&exchangeType=topic&autoDeclare=true
+    user-auth-created: spring-rabbitmq:communication?queues=communication.email&routingKey=command.user-auth.send-email&exchangeType=topic&autoDeclare=true
+  destiny:
+    command-send-email: smtps://smtp.gmail.com:465?username=${user_email}&password=${pass_email}&mail.smtp.auth=false&mail.smtp.starttls.enable=true
+
+
+quarkus:
+  log:
+    level: INFO
+  health:
+    openapi:
+      included: true
+    extensions:
+      enabled: true
+  smallrye-health:
+    ui:
+      always-include: true
+    root-path: /_app-state/health
+
+
 

@@ -60,14 +60,14 @@
         <h1>Bem-vindo ao nosso serviço!</h1>
     </div>
     <div class="content">
-        <#if body.name?has_content>
-            <p>Olá, ${body.name}</p>
+        <#if body.specification.detail.nameTo?has_content>
+            <p>Olá, ${body.specification.detail.nameTo}</p>
         <#else>
             <p>Olá</p>
         </#if>
         <p>Agradecemos por se cadastrar em nosso serviço. Para finalizar a criação da sua conta, clique no botão abaixo para confirmar seu email:</p>
-        <#if body.urlConfirmation?has_content>
-            <p><a href="${body.urlConfirmation}">Confirmar minha conta</a></p>
+        <#if body.specification.detail.urlConfirmation?has_content>
+            <p><a href="${body.specification.detail.urlConfirmation}">Confirmar minha conta</a></p>
         <#else>
             <p><a href="#">Confirmar minha conta</a></p>
         </#if>

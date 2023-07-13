@@ -13,9 +13,7 @@ class RabbitMQConfig {
                            @ConfigProperty(name = "pass_rabbit") pwd: String,
                            @ConfigProperty(name = "port_rabbit") port: Int,
     ): ConnectionFactory {
-        val connectionFactory: CachingConnectionFactory = CachingConnectionFactory()
-        connectionFactory.host = host
-        connectionFactory.port = port
+        var connectionFactory: CachingConnectionFactory = CachingConnectionFactory(host, port)
         connectionFactory.username = username
         connectionFactory.setPassword(pwd)
         return connectionFactory
