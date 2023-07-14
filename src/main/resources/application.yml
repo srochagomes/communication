@@ -5,11 +5,38 @@ port_rabbit: ${RABBIT_PORT:5672}
 user_email: ${EMAIL_USERNAME:gomblesolutions@gmail.com}
 pass_email: ${EMAIL_PASSWORD:lqxmahblswywlgek}
 
+good-pratices-communication-email: "\
+  deadLetterExchange=communication\
+  &deadLetterExchangeType=topic\
+  &deadLetterQueue=communication.email-dlq\
+  &deadLetterRoutingKey=command.send-email-dlq\
+  &maximumRetryAttempts=3\
+  &retryDelay=2000\
+  &concurrentConsumers=3\
+  &maxConcurrentConsumers=3\
+  &prefetchCount=100\
+  "
+
+
 events:
   origin:
-    user-auth-created: spring-rabbitmq:communication?queues=communication.email&routingKey=command.user-auth.send-email&exchangeType=topic&autoDeclare=true
+    user-auth-created: "\
+    spring-rabbitmq:communication?\
+    queues=communication.email\
+    &routingKey=command.send-email.*\
+    &exchangeType=topic\
+    &autoDeclare=true\
+    &${good-pratices-communication-email}\
+    "
+
   destiny:
-    command-send-email: smtps://smtp.gmail.com:465?username=${user_email}&password=${pass_email}&mail.smtp.auth=false&mail.smtp.starttls.enable=true
+    command-send-email: "\
+    smtps://smtp.gmail.com:465?\
+    username=${user_email}\
+    &password=${pass_email}\
+    &mail.smtp.auth=false\
+    &mail.smtp.starttls.enable=true\
+    "
 
 
 quarkus:
