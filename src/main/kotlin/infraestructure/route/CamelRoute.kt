@@ -7,11 +7,13 @@ import infraestructure.dto.enum.MessageType
 import jakarta.enterprise.context.ApplicationScoped
 import org.apache.camel.builder.RouteBuilder
 import org.apache.camel.component.jackson.JacksonDataFormat
-import org.apache.camel.component.mail.MailMessage
+import org.eclipse.microprofile.config.inject.ConfigProperty
 
 
 @ApplicationScoped
-class CamelRoute(): RouteBuilder() {
+class CamelRoute(
+    @ConfigProperty(name = "static_content_path") private val staticContentPath: String
+): RouteBuilder() {
 
     override fun configure() {
         val jacksonDataFormat = JacksonDataFormat(Message::class.java)
@@ -27,6 +29,7 @@ class CamelRoute(): RouteBuilder() {
                 .setHeader("To",  jsonpath("$.specification.detail.emailTo"))
                 .setHeader("From", constant("gomblesolutions@gmail.com"))
                 .setHeader("Subject", jsonpath("$.specification.domainType").convertTo(DomainType::class.java).method("description"))
+                .setHeader("pathStaticContentImage", constant(staticContentPath))
                 .to("freemarker://email/welcome_and_confirm.ftl")
                 .setBody(simple("\${body}"))
                 .setHeader("Content-Type", constant("text/html"))

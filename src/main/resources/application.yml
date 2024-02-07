@@ -4,6 +4,7 @@ pass_rabbit: ${RABBIT_PASSWORD:api@user}
 port_rabbit: ${RABBIT_PORT:5672}
 user_email: ${EMAIL_USERNAME:gomblesolutions@gmail.com}
 pass_email: ${EMAIL_PASSWORD:lqxmahblswywlgek}
+static_content_path: ${STATIC_COMPONENT_PATH:http://187.74.123.203:3000}
 
 good-pratices-communication-email: "\
   deadLetterExchange=communication\

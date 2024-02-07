@@ -58,3 +58,21 @@ If you want to learn more about building native executables, please consult http
 - Camel String Template ([guide](https://camel.apache.org/camel-quarkus/latest/reference/extensions/stringtemplate.html)): Transform messages using StringTemplate engine
 - Camel Kotlin DSL ([guide](https://camel.apache.org/camel-quarkus/latest/reference/extensions/kotlin-dsl.html)): Support for parsing Kotlin route definitions at runtime
 - Kotlin ([guide](https://quarkus.io/guides/kotlin)): Write your services in Kotlin
+
+
+## Email example
+
+{
+    "type": "EMAIL",
+    "createAt": "2023-09-15T13:30:00",
+    "specification": {
+        "domainType": "ACCOUNT_CONFIRMATION",
+        "accountId": "c6450c9b-b79e-4c3c-a394-1e5fc12b245f",
+        "detail": {
+            "emailTo": "dsdsds@gmail.com",
+            "nameTo": "Usuário Exemplo",
+            "subject": "Bem-vindo ao nosso serviço!",
+            "urlConfirmation": "https://www.example.com/confirm"
+        }
+    }
+}
